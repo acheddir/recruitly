@@ -1,0 +1,9 @@
+<Solution>
+    <Folder Name="/Common/">
+    </Folder>
+    <Folder Name="/Hosts/">
+        <Project Path="src/Hosts/API/API.csproj" />
+    </Folder>
+    <Folder Name="/Modules/">
+    </Folder>
+</Solution>
