@@ -2,10 +2,13 @@
 
 internal static class ErrorHandlingMiddleware
 {
-    internal static IApplicationBuilder UseErrorHandling(this IApplicationBuilder builder)
+    extension(IApplicationBuilder builder)
     {
-        builder.UseExceptionHandler();
+        internal IApplicationBuilder UseErrorHandling()
+        {
+            builder.UseExceptionHandler();
 
-        return builder;
+            return builder;
+        }
     }
 }

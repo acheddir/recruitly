@@ -2,11 +2,14 @@
 
 internal static class ErrorHandlingModule
 {
-    internal static IServiceCollection AddErrorHandling(this IServiceCollection services)
+    extension(IServiceCollection services)
     {
-        services.AddExceptionHandler<GlobalExceptionHandler>();
-        services.AddProblemDetails();
+        internal IServiceCollection AddErrorHandling()
+        {
+            services.AddExceptionHandler<GlobalExceptionHandler>();
+            services.AddProblemDetails();
 
-        return services;
+            return services;
+        }
     }
 }
