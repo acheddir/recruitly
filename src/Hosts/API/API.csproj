@@ -17,6 +17,7 @@
     </ItemGroup>
 
     <ItemGroup>
+      <ProjectReference Include="..\..\Common\Common.BusinessRules\Common.BusinessRules.csproj" />
       <ProjectReference Include="..\..\Common\Common.Mediator\Common.Mediator.csproj" />
     </ItemGroup>
 
