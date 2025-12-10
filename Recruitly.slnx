@@ -1,5 +1,7 @@
 <Solution>
     <Folder Name="/Common/">
+        <Project Path="src/Common/Common.Mediator/Common.Mediator.csproj" />
+        <Project Path="src/Common/Common.Results/Common.Results.csproj" />
     </Folder>
     <Folder Name="/Hosts/">
         <Project Path="src/Hosts/API/API.csproj" />
