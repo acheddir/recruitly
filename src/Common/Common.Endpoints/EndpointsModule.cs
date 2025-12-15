@@ -2,9 +2,8 @@
 
 public static class EndpointsModule
 {
-    public static IServiceCollection AddEndpoints(this IServiceCollection services, Assembly assembly)
+    public static IServiceCollection AddEndpoints(this IServiceCollection services, params Assembly[] assemblies)
     {
-        Assembly[] assemblies = [assembly];
 
         ServiceDescriptor[] serviceDescriptors =
         [
