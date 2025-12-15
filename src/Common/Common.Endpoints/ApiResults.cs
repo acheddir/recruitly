@@ -71,5 +71,3 @@ public static class ApiResults
         }
     }
 }
-
-
