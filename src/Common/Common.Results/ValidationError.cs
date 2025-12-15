@@ -13,7 +13,7 @@
 /// validation issues.
 /// </param>
 public record ValidationError(Error[] Errors) : Error("General.Validation",
-    "On or more validation errors occured",
+    "One or more validation errors occurred",
     ErrorType.Validation)
 {
     /// <summary>
