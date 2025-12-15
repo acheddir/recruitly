@@ -20,4 +20,3 @@ public static class EndpointsModule
         return services;
     }
 }
-
