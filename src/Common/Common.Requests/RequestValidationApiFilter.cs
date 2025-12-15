@@ -4,8 +4,10 @@ public class RequestValidationApiFilter<TRequest> : IEndpointFilter where TReque
 {
     public async ValueTask<object?> InvokeAsync(EndpointFilterInvocationContext context, EndpointFilterDelegate next)
     {
-        TRequest? request =
-            context.Arguments.FirstOrDefault(arg => arg?.GetType() == typeof(TRequest)) as TRequest;
+        if (context.Arguments.FirstOrDefault(arg => arg is TRequest) is not TRequest request)
+        {
+            return await next.Invoke(context);
+        }
 
         IValidator<TRequest>? validator = context.HttpContext.RequestServices.GetService<IValidator<TRequest>>();
 
@@ -14,7 +16,7 @@ public class RequestValidationApiFilter<TRequest> : IEndpointFilter where TReque
             return await next.Invoke(context);
         }
 
-        ValidationResult? validationResult = await validator.ValidateAsync(request!);
+        ValidationResult? validationResult = await validator.ValidateAsync(request);
 
         if (validationResult.IsValid)
         {
