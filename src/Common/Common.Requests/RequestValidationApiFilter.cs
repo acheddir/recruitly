@@ -17,7 +17,6 @@ public class RequestValidationApiFilter<TRequest> : IEndpointFilter where TReque
         }
 
         ValidationResult? validationResult = await validator.ValidateAsync(request);
-
         if (validationResult.IsValid)
         {
             return await next.Invoke(context);
