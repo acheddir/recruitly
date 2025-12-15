@@ -4,25 +4,16 @@ public class RequestValidationApiFilter<TRequest> : IEndpointFilter where TReque
 {
     public async ValueTask<object?> InvokeAsync(EndpointFilterInvocationContext context, EndpointFilterDelegate next)
     {
-        TRequest? request =
-            context.Arguments.OfType<TRequest>().FirstOrDefault();
+        if (context.Arguments.FirstOrDefault(arg => arg is TRequest) is not TRequest request)
+        {
+            return await next.Invoke(context);
+        }
 
         IValidator<TRequest>? validator = context.HttpContext.RequestServices.GetService<IValidator<TRequest>>();
 
         if (validator is null)
         {
             return await next.Invoke(context);
-        }
-
-        if (request is null)
-        {
-            return Results.ValidationProblem(
-                new Dictionary<string, string[]>
-                {
-                    { "Request", new[] { "Request payload is missing or invalid." } }
-                },
-                statusCode: (int)HttpStatusCode.BadRequest
-            );
         }
 
         ValidationResult? validationResult = await validator.ValidateAsync(request);
