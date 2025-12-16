@@ -4,8 +4,12 @@ public class RequestValidationApiFilter<TRequest> : IEndpointFilter where TReque
 {
     public async ValueTask<object?> InvokeAsync(EndpointFilterInvocationContext context, EndpointFilterDelegate next)
     {
-        TRequest? request =
-            context.Arguments.FirstOrDefault(arg => arg?.GetType() == typeof(TRequest)) as TRequest;
+        if (context.Arguments.OfType<TRequest>().FirstOrDefault() is not { } request)
+        {
+            Dictionary<string, string[]> validationErrors =
+                new() { ["body"] = ["Invalid or missing request body"] };
+            return Results.ValidationProblem(validationErrors);
+        }
 
         IValidator<TRequest>? validator = context.HttpContext.RequestServices.GetService<IValidator<TRequest>>();
 
@@ -14,7 +18,7 @@ public class RequestValidationApiFilter<TRequest> : IEndpointFilter where TReque
             return await next.Invoke(context);
         }
 
-        ValidationResult? validationResult = await validator.ValidateAsync(request!);
+        ValidationResult? validationResult = await validator.ValidateAsync(request);
 
         if (validationResult.IsValid)
         {
