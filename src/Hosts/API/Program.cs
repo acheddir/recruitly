@@ -5,6 +5,7 @@ builder.Host.AddLogging();
 builder.Services
     .AddDocumentation()
     .AddEndpointsApiExplorer()
+    .AddVersioning()
     .AddErrorHandling()
     .AddHttpContextAccessor()
     .AddMediator(builder.Configuration, []);
