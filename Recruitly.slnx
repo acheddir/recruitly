@@ -3,6 +3,7 @@
         <Project Path="src/Common/Common.BusinessRules/Common.BusinessRules.csproj" />
         <Project Path="src/Common/Common.Endpoints/Common.Endpoints.csproj" />
         <Project Path="src/Common/Common.Mediator/Common.Mediator.csproj" />
+        <Project Path="src/Common/Common.MultiTenancy/Common.MultiTenancy.csproj" />
         <Project Path="src/Common/Common.OpenAPI/Common.OpenAPI.csproj" />
         <Project Path="src/Common/Common.Requests/Common.Requests.csproj" />
         <Project Path="src/Common/Common.Results/Common.Results.csproj" />

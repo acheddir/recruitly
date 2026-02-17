@@ -13,6 +13,7 @@ internal static class MediatorModule
                 config.LicenseKey = configuration["Licences:MediatR"];
                 config.RegisterServicesFromAssemblies(assemblies);
 
+                config.AddOpenBehavior(typeof(TenantValidationPipelineBehavior<,>));
                 config.AddOpenBehavior(typeof(RequestLoggingPipelineBehavior<,>));
             });
 
