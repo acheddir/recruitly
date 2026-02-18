@@ -8,6 +8,7 @@ builder.Services
     .AddVersioning()
     .AddErrorHandling()
     .AddHttpContextAccessor()
+    .AddMultiTenancy()
     .AddMediator(builder.Configuration, []);
 
 WebApplication app = builder.Build();
@@ -20,6 +21,7 @@ if (app.Environment.IsDevelopment())
 app
     .UseHttpsRedirection()
     .UseRouting()
+    .UseTenantResolution()
     .UseErrorHandling();
 
 await app.RunAsync();

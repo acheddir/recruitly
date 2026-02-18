@@ -23,6 +23,7 @@
     <ItemGroup>
       <ProjectReference Include="..\..\Common\Common.BusinessRules\Common.BusinessRules.csproj" />
       <ProjectReference Include="..\..\Common\Common.Mediator\Common.Mediator.csproj" />
+      <ProjectReference Include="..\..\Common\Common.MultiTenancy\Common.MultiTenancy.csproj" />
     </ItemGroup>
 
 </Project>

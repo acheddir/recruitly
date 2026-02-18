@@ -1,9 +1,11 @@
 ﻿namespace Recruitly.API.Common.Mediator.Behaviors;
 
 using Logging;
+using Recruitly.Common.MultiTenancy;
 
 internal class RequestLoggingPipelineBehavior<TRequest, TResponse>(
-    ILogger<RequestLoggingPipelineBehavior<TRequest, TResponse>> logger)
+    ILogger<RequestLoggingPipelineBehavior<TRequest, TResponse>> logger,
+    ITenantContext tenantContext)
     : IPipelineBehavior<TRequest, TResponse>
     where TRequest : class
     where TResponse : Result
@@ -17,6 +19,7 @@ internal class RequestLoggingPipelineBehavior<TRequest, TResponse>(
         string requestName = typeof(TRequest).Name;
 
         using (LogContext.PushProperty("Module", moduleName))
+        using (LogContext.PushProperty("TenantId", tenantContext.TenantId ?? "N/A"))
         {
             Log.ProcessingRequest(logger, requestName);
 

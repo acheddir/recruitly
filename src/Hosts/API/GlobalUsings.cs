@@ -9,6 +9,7 @@ global using Recruitly.API.Common.Logging;
 global using Recruitly.API.Common.Mediator;
 global using Recruitly.API.Common.Versioning;
 global using Recruitly.Common.BusinessRules;
+global using Recruitly.Common.MultiTenancy;
 global using Recruitly.Common.Results;
 global using Scalar.AspNetCore;
 global using Serilog;

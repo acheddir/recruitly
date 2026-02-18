@@ -17,6 +17,12 @@ internal sealed class GlobalExceptionHandler(ILogger<GlobalExceptionHandler> log
                 Title = businessRuleValidationException.Message,
                 Type = "https://datatracker.ietf.org/doc/html/rfc7231#section-6.5.8"
             },
+            TenantNotResolvedException tenantNotResolvedException => new ProblemDetails
+            {
+                Status = StatusCodes.Status400BadRequest,
+                Title = tenantNotResolvedException.Message,
+                Type = "https://datatracker.ietf.org/doc/html/rfc7231#section-6.5.1"
+            },
             _ => new ProblemDetails
             {
                 Status = StatusCodes.Status500InternalServerError,
